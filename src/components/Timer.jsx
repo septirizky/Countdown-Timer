@@ -1,5 +1,5 @@
 import React, { useEffect, Fragment } from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 const Timer = ({
   hours,
@@ -14,7 +14,7 @@ const Timer = ({
   setFinished,
 }) => {
   useEffect(() => {
-    if (paused === true) {
+    if (paused === true && started) {
       const myInterval = setInterval(() => {
         if (seconds > 0) {
           setSeconds(seconds - 1);
@@ -39,17 +39,28 @@ const Timer = ({
 
       return () => clearInterval(myInterval);
     }
-  });
+  }, [
+    hours,
+    minutes,
+    paused,
+    seconds,
+    setFinished,
+    setHours,
+    setMinutes,
+    setSeconds,
+    setStarted,
+    started,
+  ]);
 
   return (
     <Fragment>
-      <Grid item>
-        <Typography variant="h4">
-          {hours < 10 ? `0${hours}` : hours} :{" "}
-          {minutes < 10 ? `0${minutes}` : minutes} :{" "}
-          {seconds < 10 ? `0${seconds}` : seconds}
-        </Typography>
-      </Grid>
+      <Typography variant="h2" className="timer-display">
+        {hours < 10 ? `0${hours}` : hours}
+        <span className="timer-display__separator">:</span>
+        {minutes < 10 ? `0${minutes}` : minutes}
+        <span className="timer-display__separator">:</span>
+        {seconds < 10 ? `0${seconds}` : seconds}
+      </Typography>
     </Fragment>
   );
 };

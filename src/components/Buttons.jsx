@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 
 const Buttons = ({
@@ -8,15 +8,17 @@ const Buttons = ({
   handleStart,
   handlePause,
   handleReset,
+  disabledStart,
 }) => {
   if (started) {
     return (
-      <Fragment>
+      <div className="timer-actions">
         <Button
           variant="contained"
           color="default"
           onClick={handlePause}
           disableElevation
+          className="timer-button timer-button--secondary"
         >
           {paused ? "Pause" : "Resume"}
         </Button>
@@ -25,24 +27,26 @@ const Buttons = ({
           color="secondary"
           onClick={handleReset}
           disableElevation
+          className="timer-button timer-button--danger"
         >
           Reset
         </Button>
-      </Fragment>
+      </div>
     );
   }
 
   return (
-    <Fragment>
+    <div className="timer-actions">
       <Button
         variant="contained"
-        color="primary"
         onClick={finished ? handleReset : handleStart}
         disableElevation
+        className="timer-button timer-button--primary"
+        disabled={!finished && disabledStart}
       >
         {finished ? "START AGAIN" : "Start"}
       </Button>
-    </Fragment>
+    </div>
   );
 };
 

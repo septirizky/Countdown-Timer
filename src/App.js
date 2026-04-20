@@ -1,34 +1,27 @@
-import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
 import Countdown from "./components/Countdown";
 import "./App.css";
 
-const styles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    position: "absolute",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
-    width: "100%",
-  },
-}));
-
 function App() {
-  const classes = styles();
-
   return (
-    <div className={classes.root}>
-      <Container maxWidth="xs">
-        <Grid container direction="column" alignItems="center">
-          <Grid item style={{ marginBottom: 4 }}>
-            <Typography variant="h5" className="Header" gutterBottom>
-              <strong>COUNTDOWN TIMER</strong>
+    <main className="app-shell">
+      <div className="app-shell__glow app-shell__glow--left" />
+      <div className="app-shell__glow app-shell__glow--right" />
+      <Container maxWidth="sm" className="app-shell__container">
+        <section className="timer-card">
+          <div className="timer-card__header">
+            <span className="timer-card__eyebrow">Focus Session</span>
+            <Typography variant="h3" component="h1" className="timer-card__title">
+              Countdown Timer
             </Typography>
-          </Grid>
+            <Typography variant="body1" className="timer-card__subtitle">
+              Atur durasi, mulai hitung mundur, lalu jeda atau reset kapan saja.
+            </Typography>
+          </div>
           <Countdown />
-        </Grid>
+        </section>
       </Container>
-    </div>
+    </main>
   );
 }
 

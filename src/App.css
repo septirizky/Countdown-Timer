@@ -1,38 +1,266 @@
-.App {
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  overflow: hidden;
+}
+
+.app-shell__container {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell__glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+.app-shell__glow--left {
+  top: -120px;
+  left: -80px;
+  background: rgba(24, 145, 145, 0.22);
+}
+
+.app-shell__glow--right {
+  right: -120px;
+  bottom: -140px;
+  background: rgba(79, 70, 229, 0.16);
+}
+
+.timer-card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(18px);
+  padding: 32px;
+}
+
+.timer-card__header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.timer-card__eyebrow {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.1);
+  color: #0f766e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.timer-card__title {
+  margin: 18px 0 10px !important;
+  font-weight: 800 !important;
+  color: #0f172a;
+  letter-spacing: -0.04em;
+}
+
+.timer-card__subtitle {
+  margin: 0 auto !important;
+  max-width: 440px;
+  color: #475569;
+  line-height: 1.7 !important;
+}
+
+.countdown-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.countdown-panel__status {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.countdown-panel__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(14, 165, 233, 0.12);
+  color: #0369a1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.countdown-panel__badge--done {
+  background: rgba(249, 115, 22, 0.12);
+  color: #c2410c;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.countdown-panel__message {
+  margin-bottom: 8px !important;
+  font-weight: 700 !important;
+  color: #111827;
+}
+
+.countdown-panel__helper {
+  margin: 0 auto !important;
+  max-width: 360px;
+  color: #64748b;
+  line-height: 1.6 !important;
+}
+
+.time-picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.time-picker__unit {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 6px;
+  padding: 18px 14px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(226, 232, 240, 0.72));
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.time-picker__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.time-picker__value {
+  min-width: 2ch;
+  font-size: clamp(2.3rem, 5vw, 3rem);
+  line-height: 1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #0f172a;
+}
+
+.time-picker__arrow {
+  color: #0f766e !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(15, 118, 110, 0.12) !important;
+}
+
+.time-picker__arrow:hover {
+  background: rgba(240, 253, 250, 1) !important;
+}
+
+.countdown-panel__display {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 164px;
+  padding: 24px;
+  border-radius: 24px;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.98), rgba(226, 232, 240, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.App-link {
-  color: #61dafb;
+.countdown-panel__display--finished {
+  min-height: 120px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.timer-display {
+  margin: 0 !important;
+  font-size: clamp(2.75rem, 10vw, 4.75rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  font-variant-numeric: tabular-nums;
+  color: #0f172a;
+}
+
+.timer-display__separator {
+  margin: 0 0.2em;
+  color: #0f766e;
+}
+
+.countdown-panel__footer-icon {
+  display: flex;
+  justify-content: center;
+  margin-top: -8px;
+}
+
+.countdown-panel__icon {
+  font-size: 2rem !important;
+  color: #0f766e;
+}
+
+.countdown-panel__icon--finished {
+  font-size: 3rem !important;
+  color: #f97316;
+}
+
+.timer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.timer-button {
+  min-width: 132px !important;
+  padding: 12px 22px !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+}
+
+.timer-button--primary {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+}
+
+.timer-button--primary:hover {
+  background: linear-gradient(135deg, #115e59, #0f766e) !important;
+}
+
+.timer-button--secondary {
+  color: #0f172a !important;
+  background: #e2e8f0 !important;
+}
+
+.timer-button--danger {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ea580c, #f97316) !important;
+}
+
+@media (max-width: 600px) {
+  .app-shell {
+    padding: 20px 14px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .timer-card {
+    padding: 24px 18px;
+    border-radius: 24px;
+  }
+
+  .time-picker {
+    gap: 10px;
+  }
+
+  .time-picker__unit {
+    padding: 16px 8px;
+    border-radius: 18px;
+  }
+
+  .timer-button {
+    width: 100%;
   }
 }
